@@ -12,10 +12,13 @@ export default function App() {
   function handleN() {
     n === 0 ? setN(1) : setN(0);
   }
+  function handleM() {
+    n === 0 ? setM('tambem') : setM('algo');
+  }
 
   function mostra() {
-    console.log('mostra');
-    return 'mostra';
+    console.log(quote.other);
+    return quote.other;
   }
 
   React.useEffect(() => {
@@ -30,8 +33,9 @@ export default function App() {
       <h1>Hello StackBlitz!</h1>
       <p>{quote.quoteList[n]}</p>
       <button onClick={handleN}>Muda frase</button>
+      <button onClick={handleM}>Muda M</button>
       <p>{m}</p>
-      <p>{mostra()}</p>
+      <p>{React.useMemo(() => mostra(), [m])}</p>
     </div>
   );
 }
